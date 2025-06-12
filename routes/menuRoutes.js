@@ -41,6 +41,7 @@ router.post("/menu", async (req, res) => {
     }
 });
 
+// Ändra befintligt menyobjekt via id.
 router.put("/menu/:id", async (req, res) => {
     try {
         const updatedItem = await MenuItem.findByIdAndUpdate(req.params.id, { new: true });
@@ -50,6 +51,7 @@ router.put("/menu/:id", async (req, res) => {
     }
 });
 
+// Radera befintligt menyobjekt via id.
 router.delete("/menu/:id", async (req, res) => {
     try {
         await MenuItem.findByIdAndDelete(req.params.id);
