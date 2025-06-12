@@ -17,8 +17,11 @@ router.post("/", async (req, res) => {
     try {
         const { fullName, phone, date, time, guests } = req.body;
 
-        if(!fullName || !phone || !date || !time || !guests || guests > 6) {
+        if(!fullName || !phone || !date || !time || !guests ) {
             return res.status(400).json({ message: "Namn, telefonnummer, datum, tid och antal gäster måste fyllas i!"});
+        }
+        if(guests > 6) {
+            return res.status(400).json({ message: "Antal gäster måste vara under sju!"});
         }
 
         const booking = new Booking(req.body);
