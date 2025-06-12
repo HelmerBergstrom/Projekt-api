@@ -20,7 +20,7 @@ const BookingSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    howMany: {
+    guests: {
         type: Number,
         required: true
     },
