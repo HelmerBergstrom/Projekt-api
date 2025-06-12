@@ -40,3 +40,21 @@ router.post("/menu", async (req, res) => {
         res.status(400).json({ message: err.message });
     }
 });
+
+router.put("/menu/:id", async (req, res) => {
+    try {
+        const updatedItem = await MenuItem.findByIdAndUpdate(req.params.id, { new: true });
+        res.json(updatedItem);
+    } catch(err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+router.delete("/menu/:id", async (req, res) => {
+    try {
+        await MenuItem.findByIdAndDelete(req.params.id);
+        res.json({ message: "Menyobjekt raderat!"});
+    } catch(err) {
+        res.status(500).json({ message: err.message });
+    }
+});
