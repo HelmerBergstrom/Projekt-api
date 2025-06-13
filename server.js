@@ -1,6 +1,6 @@
 const express = require("express");
+const router = express.Router();
 const bodyParser = require("body-parser");
-const jwt = require("jsonwebtoken");
 const cors = require("cors");
 require("dotenv").config();
 const mongoose = require("mongoose");
@@ -17,7 +17,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/giffers").then(() => {
     console.log("Error connecting to database: " + error); 
 });
 
-const routes = require("./routes");
+const routes = require("./routes/index");
 app.use("/api", routes)
 
 

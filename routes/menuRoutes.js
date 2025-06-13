@@ -47,7 +47,7 @@ router.put("/:id", async (req, res) => {
     try {
         const updatedItem = await MenuItem.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
-        if(!item) {
+        if(!updatedItem) {
             return res.status(404).json({ message: "Menyobjektet hittades inte!"});
         }
         
@@ -66,3 +66,5 @@ router.delete("/:id", async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+
+module.exports = router;
