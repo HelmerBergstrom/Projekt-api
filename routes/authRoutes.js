@@ -3,7 +3,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-router.post("/login", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const { username, password } = req.body;
 
@@ -35,3 +35,14 @@ router.post("/login", async (req, res) => {
 });
 
 module.exports = router;
+
+// router.post("/register", async (req, res) => {
+//     try {
+//         const { username, password } = req.body;
+//         const newUser = new User({ username, password });
+//         await newUser.save();
+//         res.status(201).json({ message: "Admin skapad" });
+//     } catch (err) {
+//         res.status(500).json({ error: "Fel vid skapande av admin" });
+//     }
+// });
