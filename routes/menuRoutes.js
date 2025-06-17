@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
         const items = await MenuItem.find();
         res.json(items);
     } catch(err) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: "Menyobjekten gick inte att hämta. Vänligen försök igen senare. " });
     }
 });
 
@@ -21,7 +21,7 @@ router.get("/:id", async (req, res) => {
         }
         res.json(item);
     } catch(err) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: "Det specifika menyobjektet gick inte att hämta. " });
     }
 });
 
@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
         const newItem = await menuItem.save();
         res.status(201).json(newItem);
     } catch(err) {
-        res.status(400).json({ message: err.message });
+        res.status(400).json({ message: "Det gick inte att lägga till menyobjekt. Kontrollera att alla fält fyllts i korrekt eller försök igen sennare. " });
     }
 });
 
@@ -53,7 +53,7 @@ router.put("/:id", async (req, res) => {
         
         res.json(updatedItem);
     } catch(err) {
-        res.status(400).json({ message: err.message });
+        res.status(400).json({ message: "Det gick inte att ändra menyobjektet. Kontrollera inmatningen eller försök igen senare. " });
     }
 });
 
@@ -63,7 +63,7 @@ router.delete("/:id", async (req, res) => {
         await MenuItem.findByIdAndDelete(req.params.id);
         res.json({ message: "Menyobjektet raderat!" });
     } catch(err) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: "Borttagning av menyobjektet nekades. Vänligen försök igen senare. " });
     }
 });
 

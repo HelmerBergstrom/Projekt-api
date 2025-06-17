@@ -1,14 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const Booking = require("../models/Booking");
+const verifyToken = require("../middleware/verifyToken");
 
 // Hämta alla bokningar (ADMIN)
-router.get("/", async (req, res) => {
+router.get("/", verifyToken, async (req, res) => {
     try {
         const bookings = await Booking.find().sort({ date: 1 });
         res.json(bookings);
     } catch(err) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: "Ett serverfel har inträffat. Försök igen senare. " });
     }
 });
 
@@ -24,7 +25,7 @@ router.post("/", async (req, res) => {
         if(!fullName || !phone || !date || !time || !guests ) {
             return res.status(400).json({ message: "Namn, telefonnummer, datum, tid och antal gäster måste fyllas i!"});
         }
-        if(guests > 6) {
+        if(guests > 6 && Number) {
             return res.status(400).json({ message: "Max antal gäster per bokning är 6!" });
         }
 
@@ -37,17 +38,17 @@ router.post("/", async (req, res) => {
 
         res.status(201).json(savedBooking);
     } catch(err) {
-        res.status(400).json({ message: err.message });
+        res.status(400).json({ message: "Bokningen kunde inte skapas. Kontrollera att fälten har fyllts i korrekt och försök igen. " });
     }
 });
 
 // Ta bort enskild bokning.
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
     try {
         await Booking.findByIdAndDelete(req.params.id);
         res.json({ message: "Bokning borttagen!", Booking});
     } catch(err) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: "Fel uppstod vid borttagning av bokning." });
     }
 });
 
