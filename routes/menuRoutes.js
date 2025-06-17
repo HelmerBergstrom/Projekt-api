@@ -5,7 +5,7 @@ const MenuItem = require("../models/MenuItem");
 // Hämtar alla Menyobjekt
 router.get("/", async (req, res) => {
     try {
-        const items = await MenuItem.find().sort({ category: 1 });
+        const items = await MenuItem.find();
         res.json(items);
     } catch(err) {
         res.status(500).json({ message: err.message });
@@ -17,7 +17,7 @@ router.get("/:id", async (req, res) => {
     try {
         const item = await MenuItem.findById(req.params.id);
         if(!item) {
-            return res.status(404).json({ message: "Menyobjekt ej funnet!" });
+            return res.status(404).json({ message: "Menyobjektet hittades inte!" });
         }
         res.json(item);
     } catch(err) {
@@ -61,7 +61,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         await MenuItem.findByIdAndDelete(req.params.id);
-        res.json({ message: "Menyobjekt raderat!"});
+        res.json({ message: "Menyobjektet raderat!" });
     } catch(err) {
         res.status(500).json({ message: err.message });
     }

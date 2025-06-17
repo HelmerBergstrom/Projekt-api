@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
             return res.status(400).json({ message: "Namn, telefonnummer, datum, tid och antal gäster måste fyllas i!"});
         }
         if(guests > 6) {
-            return res.status(400).json({ message: "Antal gäster måste vara under sju!"});
+            return res.status(400).json({ message: "Max antal gäster per bokning är 6!" });
         }
 
         if(bookingDate < todaysDate) {
@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         await Booking.findByIdAndDelete(req.params.id);
-        res.json({ message: "Bokning borttagen!"});
+        res.json({ message: "Bokning borttagen!", Booking});
     } catch(err) {
         res.status(500).json({ message: err.message });
     }
