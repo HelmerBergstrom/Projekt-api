@@ -30,8 +30,8 @@ router.get("/:id", async (req, res) => {
 // Lägger till ett menyobjekt.
 router.post("/", verifyToken, async (req, res) => {
     const { title, description, price, category } = req.body;
-    if(!title || !description || !price || !category) {
-        return res.status(400).json({ message: "Titel, beskrivning, pris och kategori måste fyllas i!"});
+    if(!title || !price || !category) {
+        return res.status(400).json({ message: "Titel, pris och kategori måste fyllas i!"});
     }
 
     const menuItem = new MenuItem({ title, description, price, category });
