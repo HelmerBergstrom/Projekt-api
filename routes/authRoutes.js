@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+require('dotenv').config();
 
 router.post("/", async (req, res) => {
     try {
@@ -26,10 +27,12 @@ router.post("/", async (req, res) => {
                 message: "Admin inloggad...",
                 token: token
             }
+
             res.status(200).json(response);
         }
 
         } catch(err) {
+            console.log("Login error:", err)
             res.status(500).json({ message: "Server error!" });
         }
 });

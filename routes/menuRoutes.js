@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const MenuItem = require("../models/MenuItem");
+const verifyToken = require("../middleware/verifyToken");
+require('dotenv').config();
 
 // Hämtar alla Menyobjekt
 router.get("/", async (req, res) => {
@@ -26,7 +28,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Lägger till ett menyobjekt.
-router.post("/", async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
     const { title, description, price, category } = req.body;
     if(!title || !description || !price || !category) {
         return res.status(400).json({ message: "Titel, beskrivning, pris och kategori måste fyllas i!"});
@@ -43,7 +45,7 @@ router.post("/", async (req, res) => {
 });
 
 // Ändra befintligt menyobjekt via id.
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyToken, async (req, res) => {
     try {
         const updatedItem = await MenuItem.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
@@ -58,7 +60,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // Radera befintligt menyobjekt via id.
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
     try {
         await MenuItem.findByIdAndDelete(req.params.id);
         res.json({ message: "Menyobjektet raderat!" });

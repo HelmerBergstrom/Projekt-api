@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Booking = require("../models/Booking");
 const verifyToken = require("../middleware/verifyToken");
+require('dotenv').config();
 
 // Hämta alla bokningar (ADMIN)
 router.get("/", verifyToken, async (req, res) => {
@@ -25,7 +26,7 @@ router.post("/", async (req, res) => {
         if(!fullName || !phone || !date || !time || !guests ) {
             return res.status(400).json({ message: "Namn, telefonnummer, datum, tid och antal gäster måste fyllas i!"});
         }
-        if(guests > 6 && Number) {
+        if(guests > 6) {
             return res.status(400).json({ message: "Max antal gäster per bokning är 6!" });
         }
 
