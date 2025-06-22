@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Schema för menyobjekt.
 const MenuItemSchema = new mongoose.Schema({
     title: {
         type: String,

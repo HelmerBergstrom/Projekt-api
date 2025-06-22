@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 require('dotenv').config();
 
+// Inloggningsroute för Admin. 
 router.post("/", async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -22,7 +23,7 @@ router.post("/", async (req, res) => {
             return res.status(401).json({ error: "Felaktigt användarnamn/lösenord! "});
         } else {
             const userString = { username: username };
-            const token = jwt.sign(userString, process.env.JWT_KEY, { expiresIn: '2h' });
+            const token = jwt.sign(userString, process.env.JWT_KEY, { expiresIn: '2h' }); // Token giltlig i 2 timmar.
             const response = {
                 message: "Admin inloggad...",
                 token: token
@@ -38,6 +39,9 @@ router.post("/", async (req, res) => {
 });
 
 module.exports = router;
+
+// Nedan kod är för att skapa en användare. 
+// Bortkommenterad då detta endast gjordes för ett admin-inlogg.
 
 // router.post("/register", async (req, res) => {
 //     try {

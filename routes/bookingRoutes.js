@@ -26,12 +26,21 @@ router.post("/", async (req, res) => {
         if(!fullName || !phone || !date || !time || !guests ) {
             return res.status(400).json({ message: "Namn, telefonnummer, datum, tid och antal gäster måste fyllas i!"});
         }
+        // Högst 6 antal gäster.
         if(guests > 6) {
             return res.status(400).json({ message: "Max antal gäster per bokning är 6!" });
         }
 
+        // Bokning framåt i tiden endast eller samma dag.
         if(bookingDate < todaysDate) {
             return res.status(400).json({ message: "Du kan endast boka framåt i tiden eller för senare samma dag!" });
+        }
+
+        // Begränsar bokning till mellan 15:00 och 21:00.
+        const [hours, minutes] = time.split(":").map(Number);
+        
+        if(hours < 15 || (hours >= 21 && minutes > 0) || hours >= 22) {
+            return res.status(400).json({ message: "Bokningar kan endast göras mellan 15:00 och 21:00."})
         }
 
         const booking = new Booking(req.body);

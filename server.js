@@ -10,12 +10,14 @@ const port = process.env.PORT || 3001;
 app.use(cors());
 app.use(bodyParser.json());
 
+// Kopplar till databasen i mongoDB.
 mongoose.connect("mongodb://127.0.0.1:27017/giffers").then(() => {
     console.log("Connected to MongoDB :)")
 }).catch((error) => {
     console.log("Error connecting to database: " + error); 
 });
 
+// KOLLA!
 const routes = require("./routes/index");
 app.use("/api", routes);
 

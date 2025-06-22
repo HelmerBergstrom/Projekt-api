@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Schema för bokningar. "Created" ligger bara i databasen, visas ej på webbplatsen.
 const BookingSchema = new mongoose.Schema({
     fullName: {
         type: String,
@@ -33,4 +34,5 @@ const BookingSchema = new mongoose.Schema({
     }
 });
 
+// Exporterar schemat.
 module.exports = mongoose.model("bookings", BookingSchema);

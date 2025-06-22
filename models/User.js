@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 require('dotenv').config();
 
+// Schema för användare/admin.
 const UserSchema = new mongoose.Schema({
     username: {
         type: String,
