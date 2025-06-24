@@ -5,7 +5,8 @@ Denna del av projektet avser en REST-webbtjänst som används i de två andra de
 skapa en fullständig webbplats, med denna REST-webbtjänst och ett admingränssnitt i form av en webbplats, där inloggning krävs för att nå sidan.
 
 De andra delarna av projektet finns här:
-länkar till github repos
+- ADMIN-webbplats: https://github.com/HelmerBergstrom/Projekt-Admin/tree/main
+- Restaurang-webbplats: https://github.com/HelmerBergstrom/Projekt-webbplats/tree/main
 
 ## Funktionalitet
 
@@ -34,7 +35,7 @@ För att kunna ta del av denna REST-webbtjänst kan du följa stegen nedan.
 
 1. Klona ned projektet till din dator:
 ```bash
-git clone <https://github.com/HelmerBergstrom/Projekt-api/tree/dev>
+git clone https://github.com/HelmerBergstrom/Projekt-api/tree/main
 cd Projekt-API
 ```
 
