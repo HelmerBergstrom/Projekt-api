@@ -31,8 +31,9 @@ länkar till github repos
 
 För att kunna ta del av denna REST-webbtjänst kan du följa stegen nedan.
 
+```bash
 1. Klona ned projektet till din dator:
-´´´bash
+
 git clone <>
 cd Projekt-API
 
@@ -46,7 +47,7 @@ JWT_KEY=HemligNyckel
 npm start
 
 Kör efter start på http://localhost:3001/api
-´´´´
+```
 
 ## API-endpoints
 
@@ -56,12 +57,12 @@ Kör efter start på http://localhost:3001/api
 
 Logga in som admin och får en JWT-token som är giltlig i två timmar.
 
-´´´bash
+```bash
 {
     "username": "admin",
     "password": "lösenord
 }
-´´´´
+```
 
 #### Bokningar
 ###### /api/bookings
@@ -69,7 +70,7 @@ Logga in som admin och får en JWT-token som är giltlig i två timmar.
 - GET / Hämtar alla bokningar (kräver JWT-token).
 - POST / Skapar en ny bokning.
 
-´´´bash
+```bash
 {
   "fullName": "Helmer Andersson",
   "phone": "0701234567",
@@ -77,7 +78,7 @@ Logga in som admin och får en JWT-token som är giltlig i två timmar.
   "time": "18:30",
   "guests": 4
 }
-´´´´
+```
 
 - DELETE /:id - Raderar bokning (kräver JWT-token).
 
@@ -94,9 +95,9 @@ Logga in som admin och får en JWT-token som är giltlig i två timmar.
 
 Admin kräver JWT-token i Authorization-headern likt följande:
 
-´´´bash
+```bash
 Authorization: bearer < token >
-´´´´
+```
 
 ## Övrigt - bra att veta
 
