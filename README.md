@@ -31,23 +31,30 @@ länkar till github repos
 
 För att kunna ta del av denna REST-webbtjänst kan du följa stegen nedan.
 
-```bash
-1. Klona ned projektet till din dator:
 
+1. Klona ned projektet till din dator:
+```bash
 git clone <>
 cd Projekt-API
+```
 
 2. Installera npm:
+```bash
 npm install
+```
 
 3. Skapa .env-fil i projektmappen:
+```bash
 JWT_KEY=HemligNyckel
+```
 
 4. Starta servern:
+```bash
 npm start
-
-Kör efter start på http://localhost:3001/api
 ```
+
+Servern kör på http://localhost:3001/api
+
 
 ## API-endpoints
 
