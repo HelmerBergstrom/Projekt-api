@@ -34,7 +34,7 @@ För att kunna ta del av denna REST-webbtjänst kan du följa stegen nedan.
 
 1. Klona ned projektet till din dator:
 ```bash
-git clone <https://github.com/HelmerBergstrom/Projekt-api/tree/dev>
+git clone https://github.com/HelmerBergstrom/Projekt-api/tree/dev
 cd Projekt-API
 ```
 
